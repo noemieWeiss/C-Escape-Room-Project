@@ -10,17 +10,11 @@
     <PackageReference Include="AutoMapper" Version="16.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="10.0.9" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="10.0.9">
-<<<<<<< HEAD
-      <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Swashbuckle.AspNetCore" Version="10.2.2" />
-=======
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.9" />
->>>>>>> e75f471 (all the cors are working and the db is conected and created at the sqlserver)
   </ItemGroup>
 
   <ItemGroup>
@@ -28,7 +22,5 @@
     <ProjectReference Include="..\EscapeRoom.Data\EscapeRoom.Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-	<PackageReference Update="Microsoft.EntityFrameworkCore.Relational" Version="9.0.0" />
-  </ItemGroup>
+  <!-- No explicit update to Microsoft.EntityFrameworkCore.Relational to avoid downgrading EF Core packages -->
 </Project>

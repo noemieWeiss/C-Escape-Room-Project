@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
 using EscapeRoom.Core.DTOs;
-using EscapeRoom.Core.Entities;
-using EscapeRoom.Data;
+using EscapeRoom.Core.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace EscapeRoom.API.Controllers
 {
@@ -11,43 +9,52 @@ namespace EscapeRoom.API.Controllers
     [ApiController]
     public class RoomsController : ControllerBase
     {
-        private readonly AppDbContext _context;
-        private readonly IMapper _mapper;
+        private readonly IRoomService _roomService;
 
-        public RoomsController(AppDbContext context, IMapper mapper)
+        public RoomsController(IRoomService roomService)
         {
-            _context = context;
-            _mapper = mapper;
+            _roomService = roomService;
         }
 
-        // GET: api/rooms
         [HttpGet]
         public async Task<ActionResult<IEnumerable<RoomDto>>> GetAllRooms()
         {
-            var rooms = await _context.Rooms.ToListAsync();
-            // כאן קורה הקסם של AutoMapper: המרה מרשימת חדרים לרשימת DTOs
-            return Ok(_mapper.Map<IEnumerable<RoomDto>>(rooms));
+            var rooms = await _roomService.GetAllAsync();
+            return Ok(rooms);
         }
 
-        // GET: api/rooms/5
         [HttpGet("{id}")]
         public async Task<ActionResult<RoomDto>> GetRoom(int id)
         {
-            var room = await _context.Rooms.FindAsync(id);
-            if (room == null) return NotFound();
-
-            return Ok(_mapper.Map<RoomDto>(room));
+            var room = await _roomService.GetByIdAsync(id);
+            return Ok(room);
         }
 
-        // POST: api/rooms
         [HttpPost]
-        public async Task<ActionResult<RoomDto>> CreateRoom(RoomDto roomDto)
+        public async Task<ActionResult<RoomDto>> CreateRoom([FromBody] RoomDto roomDto)
         {
-            var room = _mapper.Map<Room>(roomDto);
-            _context.Rooms.Add(room);
-            await _context.SaveChangesAsync();
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
 
-            return CreatedAtAction(nameof(GetRoom), new { id = room.Id }, _mapper.Map<RoomDto>(room));
+            var created = await _roomService.CreateAsync(roomDto);
+            return CreatedAtAction(nameof(GetRoom), new { id = created.Id }, created);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<RoomDto>> UpdateRoom(int id, [FromBody] RoomDto roomDto)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var updated = await _roomService.UpdateAsync(id, roomDto);
+            return Ok(updated);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteRoom(int id)
+        {
+            await _roomService.DeleteAsync(id);
+            return NoContent();
         }
     }
 }

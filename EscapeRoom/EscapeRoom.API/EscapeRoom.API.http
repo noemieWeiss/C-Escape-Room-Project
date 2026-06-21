@@ -1,6 +1,81 @@
 @EscapeRoom.API_HostAddress = http://localhost:5114
 
-GET {{EscapeRoom.API_HostAddress}}/weatherforecast/
+### Rooms
+
+GET {{EscapeRoom.API_HostAddress}}/api/rooms
 Accept: application/json
+
+###
+
+GET {{EscapeRoom.API_HostAddress}}/api/rooms/1
+Accept: application/json
+
+###
+
+POST {{EscapeRoom.API_HostAddress}}/api/rooms
+Content-Type: application/json
+
+{
+  "name": "The Haunted Library",
+  "difficulty": "Medium",
+  "maxCapacity": 6
+}
+
+###
+
+PUT {{EscapeRoom.API_HostAddress}}/api/rooms/1
+Content-Type: application/json
+
+{
+  "name": "The Haunted Library (Updated)",
+  "difficulty": "Hard",
+  "maxCapacity": 8
+}
+
+###
+
+DELETE {{EscapeRoom.API_HostAddress}}/api/rooms/1
+
+###
+
+### Bookings
+
+GET {{EscapeRoom.API_HostAddress}}/api/bookings
+Accept: application/json
+
+###
+
+GET {{EscapeRoom.API_HostAddress}}/api/bookings/1
+Accept: application/json
+
+###
+
+POST {{EscapeRoom.API_HostAddress}}/api/bookings
+Content-Type: application/json
+
+{
+  "playerId": 1,
+  "escapeRoomId": 1,
+  "bookingDateTime": "2026-07-15T18:00:00",
+  "numberOfParticipants": 4,
+  "status": "Pending"
+}
+
+###
+
+PUT {{EscapeRoom.API_HostAddress}}/api/bookings/1
+Content-Type: application/json
+
+{
+  "playerId": 1,
+  "escapeRoomId": 1,
+  "bookingDateTime": "2026-07-15T19:00:00",
+  "numberOfParticipants": 5,
+  "status": "Confirmed"
+}
+
+###
+
+DELETE {{EscapeRoom.API_HostAddress}}/api/bookings/1
 
 ###

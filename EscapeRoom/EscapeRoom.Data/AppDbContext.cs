@@ -10,7 +10,7 @@ namespace EscapeRoom.Data
         }
 
         // הגדרת הישויות כטבלאות בבסיס הנתונים (DbSet)
-        public DbSet<EscapeRoomEntity> EscapeRooms { get; set; }
+        public DbSet<Room> Rooms { get; set; }
         public DbSet<DifficultyLevel> DifficultyLevels { get; set; }
         public DbSet<Player> Players { get; set; }
         public DbSet<Booking> Bookings { get; set; }
@@ -29,7 +29,7 @@ namespace EscapeRoom.Data
 
             // 2. הגדרת אינדקס על תאריך ושעת ההזמנה (בשביל בדיקת זמינות מהירה ב-Core)
             modelBuilder.Entity<Booking>()
-                .HasIndex(b => b.BookingDateTime)
+                .HasIndex(b => b.BookingDate)
                 .HasDatabaseName("idx_bookings_datetime");
 
             // 3. הגדרת אינדקסים על המפתחות הזרים בטבלת ההזמנות לשיפור ביצועי JOIN
@@ -38,13 +38,13 @@ namespace EscapeRoom.Data
                 .HasDatabaseName("idx_bookings_player_id");
 
             modelBuilder.Entity<Booking>()
-                .HasIndex(b => b.EscapeRoomId)
+                .HasIndex(b => b.RoomId)
                 .HasDatabaseName("idx_bookings_room_id");
 
             // 4. הגדרת אינדקס על מפתח זר של רמת הקושי בחדרים (לסינונים מהירים באתר)
-            modelBuilder.Entity<EscapeRoomEntity>()
-                .HasIndex(e => e.DifficultyLevelId)
-                .HasDatabaseName("idx_rooms_difficulty_id");
+            modelBuilder.Entity<Room>()
+                .HasIndex(e => e.Difficulty)
+                .HasDatabaseName("idx_rooms_difficulty");
         }
     }
 }

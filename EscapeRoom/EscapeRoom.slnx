@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="EscapeRoom.API/EscapeRoom.API.csproj" />
+  <Project Path="EscapeRoom.Core/EscapeRoom.Core.csproj" />
+  <Project Path="EscapeRoom.Data/EscapeRoom.Data.csproj" />
+</Solution>

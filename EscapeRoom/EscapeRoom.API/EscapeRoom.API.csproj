@@ -21,4 +21,7 @@
     <ProjectReference Include="..\EscapeRoom.Data\EscapeRoom.Data.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+	<PackageReference Update="Microsoft.EntityFrameworkCore.Relational" Version="9.0.0" />
+  </ItemGroup>
 </Project>

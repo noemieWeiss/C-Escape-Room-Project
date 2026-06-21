@@ -4,16 +4,26 @@ using EscapeRoom.Core.Entities;
 
 namespace EscapeRoom.Core.Mapping
 {
-    // המחלקה חייבת לרשת מ-Profile של AutoMapper
     public class MappingProfile : Profile
     {
         public MappingProfile()
         {
-            // הגדרת המיפוי: מהישות במסד הנתונים ל-DTO (לקריאת נתונים והחזרה ללקוח)
-            CreateMap<Room, RoomDto>();
+            CreateMap<EscapeRoomEntity, RoomDto>()
+                .ForMember(dest => dest.MaxCapacity, opt => opt.MapFrom(src => src.MaxParticipants))
+                .ForMember(dest => dest.Difficulty, opt => opt.MapFrom(src =>
+                    src.DifficultyLevel != null ? src.DifficultyLevel.Name : string.Empty));
 
-            // הגדרת המיפוי ההפוך: מ-DTO לישות (אם הלקוח שולח לנו נתונים ליצירת חדר חדש)
-            CreateMap<RoomDto, Room>();
+            CreateMap<RoomDto, EscapeRoomEntity>()
+                .ForMember(dest => dest.MaxParticipants, opt => opt.MapFrom(src => src.MaxCapacity))
+                .ForMember(dest => dest.DifficultyLevelId, opt => opt.Ignore())
+                .ForMember(dest => dest.DifficultyLevel, opt => opt.Ignore())
+                .ForMember(dest => dest.Hints, opt => opt.Ignore())
+                .ForMember(dest => dest.Bookings, opt => opt.Ignore());
+
+            CreateMap<Booking, BookingDto>();
+            CreateMap<BookingDto, Booking>()
+                .ForMember(dest => dest.Player, opt => opt.Ignore())
+                .ForMember(dest => dest.EscapeRoom, opt => opt.Ignore());
         }
     }
 }

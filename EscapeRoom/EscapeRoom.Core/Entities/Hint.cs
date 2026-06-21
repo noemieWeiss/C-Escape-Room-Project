@@ -7,6 +7,7 @@ namespace EscapeRoom.Core.Entities
     {
         [Key]
         public int Id { get; set; }
+<<<<<<< HEAD
         public string Description { get; set; } = string.Empty;
 
         // התעדכן ל-RoomId
@@ -14,5 +15,12 @@ namespace EscapeRoom.Core.Entities
 
         [ForeignKey("RoomId")]
         public Room Room { get; set; } = null!;
+=======
+        public string Text { get; set; } = string.Empty;
+
+        // מפתח זר לחדר הבריחה
+        public int EscapeRoomId { get; set; }
+        public EscapeRoomEntity? EscapeRoom { get; set; }
+>>>>>>> e75f471 (all the cors are working and the db is conected and created at the sqlserver)
     }
 }

@@ -2,15 +2,15 @@
 
 namespace EscapeRoom.Core.Entities
 {
-    public class Player
+    public class Room
     {
         [Key]
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
-        public string Email { get; set; } = string.Empty;
-        public string Phone { get; set; } = string.Empty;
+        public string Difficulty { get; set; } = string.Empty;
+        public int MaxCapacity { get; set; }
 
-        // Navigation property - שחקן אחד יכול לבצע הרבה הזמנות
         public ICollection<Booking> Bookings { get; set; } = new List<Booking>();
+        public ICollection<Hint> Hints { get; set; } = new List<Hint>();
     }
 }

@@ -79,3 +79,111 @@ Content-Type: application/json
 DELETE {{EscapeRoom.API_HostAddress}}/api/bookings/1
 
 ###
+
+### Users
+
+GET {{EscapeRoom.API_HostAddress}}/api/users
+Accept: application/json
+
+###
+
+GET {{EscapeRoom.API_HostAddress}}/api/users/1
+Accept: application/json
+
+###
+
+POST {{EscapeRoom.API_HostAddress}}/api/users
+Content-Type: application/json
+
+{
+  "fullName": "Test User",
+  "email": "test.user@example.com",
+  "phone": "050-9999999"
+}
+
+###
+
+PUT {{EscapeRoom.API_HostAddress}}/api/users/1
+Content-Type: application/json
+
+{
+  "fullName": "Test User Updated",
+  "email": "test.user@example.com",
+  "phone": "050-8888888"
+}
+
+###
+
+DELETE {{EscapeRoom.API_HostAddress}}/api/users/1
+
+###
+
+### Hints
+
+GET {{EscapeRoom.API_HostAddress}}/api/hints
+Accept: application/json
+
+###
+
+GET {{EscapeRoom.API_HostAddress}}/api/hints/1
+Accept: application/json
+
+###
+
+POST {{EscapeRoom.API_HostAddress}}/api/hints
+Content-Type: application/json
+
+{
+  "text": "Look behind the painting on the north wall.",
+  "escapeRoomId": 1
+}
+
+###
+
+PUT {{EscapeRoom.API_HostAddress}}/api/hints/1
+Content-Type: application/json
+
+{
+  "text": "Look behind the painting on the south wall.",
+  "escapeRoomId": 1
+}
+
+###
+
+DELETE {{EscapeRoom.API_HostAddress}}/api/hints/1
+
+###
+
+### Difficulty Levels
+
+GET {{EscapeRoom.API_HostAddress}}/api/difficultylevels
+Accept: application/json
+
+###
+
+GET {{EscapeRoom.API_HostAddress}}/api/difficultylevels/1
+Accept: application/json
+
+###
+
+POST {{EscapeRoom.API_HostAddress}}/api/difficultylevels
+Content-Type: application/json
+
+{
+  "name": "Expert"
+}
+
+###
+
+PUT {{EscapeRoom.API_HostAddress}}/api/difficultylevels/1
+Content-Type: application/json
+
+{
+  "name": "Easy"
+}
+
+###
+
+DELETE {{EscapeRoom.API_HostAddress}}/api/difficultylevels/1
+
+###

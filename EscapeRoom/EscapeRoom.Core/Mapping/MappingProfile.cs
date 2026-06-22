@@ -24,6 +24,18 @@ namespace EscapeRoom.Core.Mapping
             CreateMap<BookingDto, Booking>()
                 .ForMember(dest => dest.Player, opt => opt.Ignore())
                 .ForMember(dest => dest.EscapeRoom, opt => opt.Ignore());
+
+            CreateMap<Player, UserDto>();
+            CreateMap<UserDto, Player>()
+                .ForMember(dest => dest.Bookings, opt => opt.Ignore());
+
+            CreateMap<Hint, HintDto>();
+            CreateMap<HintDto, Hint>()
+                .ForMember(dest => dest.EscapeRoom, opt => opt.Ignore());
+
+            CreateMap<DifficultyLevel, DifficultyLevelDto>();
+            CreateMap<DifficultyLevelDto, DifficultyLevel>()
+                .ForMember(dest => dest.EscapeRooms, opt => opt.Ignore());
         }
     }
 }

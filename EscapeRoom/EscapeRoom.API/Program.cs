@@ -2,7 +2,7 @@ using EscapeRoom.API.Middleware;
 using EscapeRoom.Core.Services;
 using EscapeRoom.Data;
 using EscapeRoom.Data.Seeding;
-using EscapeRoom.Data.Services;
+using EscapeRoom.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

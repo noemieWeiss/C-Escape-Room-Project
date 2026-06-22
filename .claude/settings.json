@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(Stop-Process -Id 7148 -Force)",
+      "PowerShell(dotnet tool install --global dotnet-ef)",
+      "Bash(xargs grep -l \"public DbSet\")"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\servi\\OneDrive\\������\\���� �����\\C#\\������\\C-Escape-Room-Project\\EscapeRoom\\EscapeRoom.Data"
+    ]
+  }
+}

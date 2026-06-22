@@ -4,7 +4,7 @@ using EscapeRoom.Core.Exceptions;
 using EscapeRoom.Core.Services;
 using Microsoft.EntityFrameworkCore;
 
-namespace EscapeRoom.Data.Services
+namespace EscapeRoom.Data.Repositories
 {
     public class BookingService : IBookingService
     {
